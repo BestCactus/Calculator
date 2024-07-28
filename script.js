@@ -42,7 +42,7 @@ const saveNum = (num, operation) => {
       operation !== "-"
     ) {
       clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
+      previousNum.innerHTML = "Cannot combine";
       return;
     }
     if (
@@ -50,7 +50,7 @@ const saveNum = (num, operation) => {
       operation !== "+"
     ) {
       clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
+      previousNum.innerHTML = "Cannot combine";
       return;
     }
     if (
@@ -58,7 +58,7 @@ const saveNum = (num, operation) => {
       operation !== "÷"
     ) {
       clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
+      previousNum.innerHTML = "Cannot combine";
       return;
     }
     if (
@@ -66,21 +66,23 @@ const saveNum = (num, operation) => {
       operation !== "×"
     ) {
       clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
+      previousNum.innerHTML = "Cannot combine";
       return;
     }
   }
   numTemp.push({ [operation]: parseFloat(num) });
-  previousNum.innerHTML = `${num}\t${operation}`;
+  previousNum.innerHTML = `${num} ${operation}`;
   output.innerHTML = "0";
-  currCalHistory += `${num}\t${operation}\t`;
+  currCalHistory += `${num} ${operation} `;
 };
 
 const calculate = (cactus, infinity) => {
   if (cactus) return "🌵🌵🌵";
   if (infinity) return "bro, it's infinite!";
+
   const outputNum = parseFloat(output.innerHTML);
   let result = Object.values(numTemp[0])[0];
+
   for (let i = 0; i < numTemp.length; i++) {
     if (numTemp[i].hasOwnProperty("+")) {
       if (i === numTemp.length - 1) {
@@ -112,8 +114,10 @@ const calculate = (cactus, infinity) => {
     }
   }
   numTemp = [];
+
   previousNum.innerHTML = "";
-  currCalHistory += `${outputNum}\t=\t${result}`;
+
+  currCalHistory += `${outputNum} = ${result}`;
   localStorage.setItem(currCalHistory, currCalHistory);
   currCalHistory = "";
   updateHistoryUI();
@@ -214,3 +218,14 @@ clearHistoryBtn.addEventListener("click", () => {
   updateHistoryUI();
 });
 updateHistoryUI();
+
+const typingInput = document.querySelector("#number-input");
+
+typingInput.addEventListener("change", () => {
+  const array = typingInput.value.split("");
+  if (/[+-÷×]/.test(array[array.length - 1])) {
+    console.log(array[array.length - 1]);
+  } else {
+    console.log(false);
+  }
+});
