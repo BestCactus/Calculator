@@ -15,40 +15,109 @@ body {
   padding: 0;
 }
 
+.navbar {
+  background-color: var(--background-light);
+  position: absolute;
+  top: 2.5%;
+  left: 15px;
+  height: 94%;
+  width: 2.5%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.navbar #calculator-icon {
+  width: 50%;
+  filter: invert(1);
+}
+
+#calculator-icon-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .divider {
+  width: 70%;
+  height: 1px;
+}
+
+.small-icon-container {
+  margin: 0 auto;
+  text-decoration: none;
+  color: white;
+}
+
+.small-icon {
+  width: 13px;
+  filter: invert(1);
+}
+
+#binary-one#binary-one {
+  width: 10.5px;
+}
+
+#i-icon {
+  width: 11px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  margin-right: 10px;
+  filter: invert(50%) sepia(61%) saturate(404%) hue-rotate(72deg)
+    brightness(100%) contrast(86%);
+}
+
 h1 {
   text-align: center;
   font-size: 3rem;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 50%);
 }
 
 .calculator {
-  width: 70%;
+  width: 72%;
+  padding: 2%;
   aspect-ratio: 1/1;
   margin: 0 auto;
-  outline: 2px solid red;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+}
+
+.divider {
+  width: 95%;
+  height: 2px;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.calculator #result,
+.calculator #previous-num {
+  display: block;
+  height: 5rem;
+  font-size: 3rem;
+  text-align: right;
+  padding-right: 5%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .calculator #result {
-  display: block;
   height: 6rem;
-  font-size: 3rem;
-  text-align: right;
-  padding-right: 5%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  overflow: scroll;
-}
-
-.calculator #previous-num {
-  display: block;
-  height: 6rem;
-  font-size: 3rem;
-  text-align: right;
-  padding-right: 5%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  overflow: scroll;
 }
 
 .grid-btn {
@@ -135,7 +204,7 @@ h1 {
 }
 
 #history-content {
-  padding-top: 30px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

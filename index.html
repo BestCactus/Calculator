@@ -7,12 +7,51 @@
     <title>Cactus Calculator :)</title>
   </head>
   <body>
-    <nav></nav>
+    <nav>
+      <div class="navbar">
+        <a id="calculator-icon-link" href="./">
+          <img
+            id="calculator-icon"
+            src="svg/calculator.svg"
+            alt="calculator icon"
+          />
+        </a>
+        <div class="divider"></div>
+        <a
+          class="binary-icon small-icon-container"
+          href="./binary-number-convert"
+        >
+          <img
+            class="small-icon"
+            id="binary-zero"
+            src="svg/0.svg"
+            alt="0 icon"
+          />
+          <img
+            class="small-icon"
+            id="binary-one"
+            src="svg/1.svg"
+            alt="1 icon"
+          />
+        </a>
+        <a
+          class="roman-icon small-icon-container"
+          href="./roman-number-convert"
+        >
+          <img id="i-icon" class="small-icon" src="svg/i.svg" alt="I icon" />
+          <img class="small-icon" src="svg/x.svg" alt="X icon" />
+        </a>
+      </div>
+    </nav>
     <main>
-      <h1>🌵 Calculator</h1>
+      <header>
+        <img class="logo" src="cactus_transparent.png" alt="cactus logo" />
+        <h1>Calculator</h1>
+      </header>
       <div class="grid-container">
         <div class="calculator">
           <span id="previous-num"></span>
+          <div class="divider"></div>
           <span id="result">0</span>
           <div class="grid-btn">
             <button type="button" class="btn" id="cactus-btn">🌵</button>
@@ -58,12 +97,7 @@
             </button>
           </div>
           <div id="history-content">
-            <div class="history-calculation">
-              <div class="history-calculation-header">
-                <h4>No Calculations</h4>
-                <p>Calculate something...</p>
-              </div>
-            </div>
+            <div class="history-calculation"></div>
           </div>
         </div>
       </div>

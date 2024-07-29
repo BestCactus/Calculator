@@ -28,11 +28,13 @@ const clearCalculator = () => {
   previousNum.innerHTML = "";
   hasCactus = false;
   hasInfinity = false;
+  currCalHistory = "";
   //TODO: make animations
 };
 
+let isColliding = false;
 const saveNum = (num, operation) => {
-  // Dealing with mixed operations, denying it
+  // Dealing with mixed operations
   if (
     numTemp.length > 0 &&
     Object.keys(numTemp[numTemp.length - 1])[0] !== operation
@@ -41,33 +43,25 @@ const saveNum = (num, operation) => {
       Object.keys(numTemp[numTemp.length - 1])[0] == "+" &&
       operation !== "-"
     ) {
-      clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
-      return;
+      isColliding = true;
     }
     if (
       Object.keys(numTemp[numTemp.length - 1])[0] == "-" &&
       operation !== "+"
     ) {
-      clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
-      return;
+      isColliding = true;
     }
     if (
       Object.keys(numTemp[numTemp.length - 1])[0] == "×" &&
       operation !== "÷"
     ) {
-      clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
-      return;
+      isColliding = true;
     }
     if (
       Object.keys(numTemp[numTemp.length - 1])[0] == "÷" &&
       operation !== "×"
     ) {
-      clearCalculator();
-      previousNum.innerHTML = "Cannot combine operations.";
-      return;
+      isColliding = true;
     }
   }
   numTemp.push({ [operation]: parseFloat(num) });
@@ -77,35 +71,72 @@ const saveNum = (num, operation) => {
 };
 
 const calculate = (cactus, infinity) => {
+  if (cactus && infinity) {
+    previousNum.innerHTML = "🌵🌵🌵🌵🌵🌵🌵🌵🌵";
+    return "🌵🌵🌵🌵🌵🌵🌵🌵🌵";
+  }
   if (cactus) return "🌵🌵🌵";
   if (infinity) return "bro, it's infinite!";
+
   const outputNum = parseFloat(output.innerHTML);
+  let priorityOperationResult = 0;
+  let hasCountedOutput = false;
+  if (isColliding) {
+    for (let i = 0; i < numTemp.length; i++) {
+      if (numTemp[i].hasOwnProperty("×")) {
+        if (i === numTemp.length - 1) {
+          priorityOperationResult = Object.values(numTemp[i])[0] * outputNum;
+          hasCountedOutput = true;
+        } else {
+          priorityOperationResult =
+            Object.values(numTemp[i])[0] * Object.values(numTemp[i + 1])[0];
+          if (numTemp[i + 1].hasOwnProperty("+")) {
+            numTemp[i + 1] = { "+": 0 };
+          }
+          if (numTemp[i + 1].hasOwnProperty("-")) {
+            numTemp[i + 1] = { "-": 0 };
+          }
+        }
+        if (i === 0) {
+          numTemp[i] = { "+": priorityOperationResult };
+          continue;
+        }
+        if (Object.keys(numTemp[i - 1])[0] === "-") {
+          numTemp[i] = { "-": priorityOperationResult };
+          continue;
+        }
+        numTemp[i] = { "+": priorityOperationResult };
+      }
+    }
+  }
   let result = Object.values(numTemp[0])[0];
+  const outputNumCheck = hasCountedOutput ? 0 : outputNum;
+  console.log(numTemp);
   for (let i = 0; i < numTemp.length; i++) {
     if (numTemp[i].hasOwnProperty("+")) {
       if (i === numTemp.length - 1) {
-        result += outputNum;
+        result += outputNumCheck;
         continue;
       }
       result += Object.values(numTemp[i + 1])[0];
     }
     if (numTemp[i].hasOwnProperty("-")) {
       if (i === numTemp.length - 1) {
-        result -= outputNum;
+        result -= outputNumCheck;
         continue;
       }
       result -= Object.values(numTemp[i + 1])[0];
     }
     if (numTemp[i].hasOwnProperty("×")) {
       if (i === numTemp.length - 1) {
-        result *= outputNum;
+        result *= outputNumCheck;
         continue;
       }
       result *= Object.values(numTemp[i + 1])[0];
     }
     if (numTemp[i].hasOwnProperty("÷")) {
       if (i === numTemp.length - 1) {
-        result /= outputNum;
+        result /= outputNumCheck;
         continue;
       }
       result /= Object.values(numTemp[i + 1])[0];
@@ -127,7 +158,7 @@ const updateHistoryUI = () => {
     <div class="history-calculation">
     <div class="history-calculation-header">
       <h4>No Calculations</h4>
-      <p>Calculate something...</p>
+      <p>Cmon, calculate something...</p>
     </div>
   </div>
     `;
@@ -140,7 +171,7 @@ const updateHistoryUI = () => {
       <div class="history-calculation-header">
         <h4>${calculation}</h4>
       </div>
-      <img src="/x.svg" alt="x-svg" />
+      <img src="/svg/close.svg" alt="close btn svg" />
     </div>
     `;
   }
