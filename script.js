@@ -32,38 +32,9 @@ const clearCalculator = () => {
   //TODO: make animations
 };
 
-let isColliding = false;
 const saveNum = (num, operation) => {
   // Dealing with mixed operations
-  if (
-    numTemp.length > 0 &&
-    Object.keys(numTemp[numTemp.length - 1])[0] !== operation
-  ) {
-    if (
-      Object.keys(numTemp[numTemp.length - 1])[0] == "+" &&
-      operation !== "-"
-    ) {
-      isColliding = true;
-    }
-    if (
-      Object.keys(numTemp[numTemp.length - 1])[0] == "-" &&
-      operation !== "+"
-    ) {
-      isColliding = true;
-    }
-    if (
-      Object.keys(numTemp[numTemp.length - 1])[0] == "×" &&
-      operation !== "÷"
-    ) {
-      isColliding = true;
-    }
-    if (
-      Object.keys(numTemp[numTemp.length - 1])[0] == "÷" &&
-      operation !== "×"
-    ) {
-      isColliding = true;
-    }
-  }
+
   numTemp.push({ [operation]: parseFloat(num) });
   previousNum.innerHTML = `${num}\t${operation}`;
   output.innerHTML = "0";
@@ -81,36 +52,33 @@ const calculate = (cactus, infinity) => {
   const outputNum = parseFloat(output.innerHTML);
   let priorityOperationResult = 0;
   let hasCountedOutput = false;
-  if (isColliding) {
-    for (let i = 0; i < numTemp.length; i++) {
-      if (numTemp[i].hasOwnProperty("×")) {
-        if (i === numTemp.length - 1) {
-          priorityOperationResult = Object.values(numTemp[i])[0] * outputNum;
-          hasCountedOutput = true;
-        } else {
-          priorityOperationResult =
-            Object.values(numTemp[i])[0] * Object.values(numTemp[i + 1])[0];
-          if (numTemp[i + 1].hasOwnProperty("+")) {
-            numTemp[i + 1] = { "+": 0 };
-          }
-          if (numTemp[i + 1].hasOwnProperty("-")) {
-            numTemp[i + 1] = { "-": 0 };
-          }
-          if (numTemp[i + 1].hasOwnProperty("×")) {
-            numTemp[i + 1] = { "×": priorityOperationResult };
-            priorityOperationResult = 0;
-          }
+  for (let i = 0; i < numTemp.length; i++) {
+    if (numTemp[i].hasOwnProperty("×")) {
+      if (i === numTemp.length - 1) {
+        priorityOperationResult = Object.values(numTemp[i])[0] * outputNum;
+        hasCountedOutput = true;
+      } else {
+        priorityOperationResult =
+          Object.values(numTemp[i])[0] * Object.values(numTemp[i + 1])[0];
+        if (numTemp[i + 1].hasOwnProperty("+")) {
+          numTemp[i + 1] = { "+": 0 };
         }
-        if (i === 0) {
-          numTemp[i] = { "+": priorityOperationResult };
-          continue;
+        if (numTemp[i + 1].hasOwnProperty("-")) {
+          numTemp[i + 1] = { "-": 0 };
         }
+        if (numTemp[i + 1].hasOwnProperty("×")) {
+          numTemp[i + 1] = { "×": priorityOperationResult };
+          priorityOperationResult = 0;
+        }
+      }
+      try {
+        // For if the object cannot be accessed
         if (Object.keys(numTemp[i - 1])[0] === "-") {
           numTemp[i] = { "-": priorityOperationResult };
           continue;
         }
-        numTemp[i] = { "+": priorityOperationResult };
-      }
+      } catch {}
+      numTemp[i] = { "+": priorityOperationResult };
     }
   }
   let result = Object.values(numTemp[0])[0];
