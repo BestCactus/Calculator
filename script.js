@@ -96,6 +96,10 @@ const calculate = (cactus, infinity) => {
           if (numTemp[i + 1].hasOwnProperty("-")) {
             numTemp[i + 1] = { "-": 0 };
           }
+          if (numTemp[i + 1].hasOwnProperty("×")) {
+            numTemp[i + 1] = { "×": priorityOperationResult };
+            priorityOperationResult = 0;
+          }
         }
         if (i === 0) {
           numTemp[i] = { "+": priorityOperationResult };
@@ -111,7 +115,6 @@ const calculate = (cactus, infinity) => {
   }
   let result = Object.values(numTemp[0])[0];
   const outputNumCheck = hasCountedOutput ? 0 : outputNum;
-  console.log(numTemp);
   for (let i = 0; i < numTemp.length; i++) {
     if (numTemp[i].hasOwnProperty("+")) {
       if (i === numTemp.length - 1) {
