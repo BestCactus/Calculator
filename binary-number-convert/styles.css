@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --background-color: #0e1217;
+  --background-light: #1c1f26;
+  --smooth-out-bezier: cubic-bezier(0.2, 0.8, 0.3, 0.95);
+  font-family: kanit;
+  font-size: 18px;
+}
+
+body {
+  background-color: var(--background-color);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: var(--background-light);
+  position: absolute;
+  top: 2.5%;
+  left: 15px;
+  height: 94%;
+  width: 2.5%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.navbar #calculator-icon {
+  width: 50%;
+  filter: invert(1);
+}
+
+#calculator-icon-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .divider {
+  width: 70%;
+  height: 1px;
+}
+
+.small-icon-container {
+  margin: 0 auto;
+  text-decoration: none;
+  color: white;
+}
+
+.small-icon {
+  width: 13px;
+  filter: invert(1);
+}
+
+#binary-one#binary-one {
+  width: 10.5px;
+}
+
+#i-icon {
+  width: 11px;
+}
+
+main {
+  width: 95.5%;
+  margin-left: auto;
+}
