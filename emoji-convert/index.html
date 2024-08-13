@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Emoji converter | Cactus</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <a id="calculator-icon-link" href="../">
+          <img
+            id="calculator-icon"
+            src="../svg/calculator.svg"
+            alt="calculator icon"
+          />
+        </a>
+        <div class="divider"></div>
+        <a
+          class="binary-icon small-icon-container"
+          href="../binary-number-convert/"
+        >
+          <img
+            class="small-icon"
+            id="binary-zero"
+            src="../svg/0.svg"
+            alt="0 icon"
+          />
+          <img
+            class="small-icon"
+            id="binary-one"
+            src="../svg/1.svg"
+            alt="1 icon"
+          />
+        </a>
+        <a class="roman-icon small-icon-container" href="./">
+          <img id="i-icon" class="small-icon" src="../svg/i.svg" alt="I icon" />
+          <img class="small-icon" src="../svg/x.svg" alt="X icon" />
+        </a>
+      </div>
+    </nav>
+    <main>
+      <h1>Emoji converter</h1>
+      <span>:D</span>
+      <select id="text-emoji-vs-normal-emoji">
+        <option value="text">Text emojis :D :) :(</option>
+        <option value="emoji">Normal emojis 😂 🙂 🙁)</option>
+      </select>
+      <textarea name="emoji-input" id="emoji-input"></textarea>
+      <input type="button" id="convert-btn" value="Convert" />
+      <span id="output-span"></span>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
