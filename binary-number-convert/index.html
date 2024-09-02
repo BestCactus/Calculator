@@ -3,40 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/9dc89b769e.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Binary Converter | Cactus</title>
   </head>
-  <body>
+  <body class="font-kanit">
     <nav>
       <div class="navbar">
-        <a id="calculator-icon-link" href="../">
-          <img
-            id="calculator-icon"
-            src="../svg/calculator.svg"
-            alt="calculator icon"
-          />
+        <a id="calculator-icon-link" href="/">
+          <i id="calculator-icon" class="fa fa-lg fa-calculator"></i>
         </a>
         <div class="divider"></div>
         <a class="binary-icon small-icon-container" href="./">
           <img
             class="small-icon"
             id="binary-zero"
-            src="../svg/0.svg"
+            src="/svg/0.svg"
             alt="0 icon"
           />
           <img
             class="small-icon"
             id="binary-one"
-            src="../svg/1.svg"
+            src="/svg/1.svg"
             alt="1 icon"
           />
         </a>
-        <a
-          class="roman-icon small-icon-container"
-          href="../roman-number-convert"
-        >
-          <img id="i-icon" class="small-icon" src="../svg/i.svg" alt="I icon" />
-          <img class="small-icon" src="../svg/x.svg" alt="X icon" />
+        <a class="roman-icon small-icon-container" href="/roman-number-convert">
+          <img id="i-icon" class="small-icon" src="/svg/i.svg" alt="I icon" />
+          <img class="small-icon" src="/svg/x.svg" alt="X icon" />
+        </a>
+        <a class="roman-icon small-icon-container" href="/emoji-convert/">
+          <i class="fa-regular fa-face-smile fa-lg"></i>
         </a>
       </div>
     </nav>

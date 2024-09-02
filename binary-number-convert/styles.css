@@ -4,8 +4,12 @@
   --background-color: #0e1217;
   --background-light: #1c1f26;
   --smooth-out-bezier: cubic-bezier(0.2, 0.8, 0.3, 0.95);
-  font-family: kanit;
+  font-family: "kanit";
   font-size: 18px;
+}
+
+.font-kanit.font-kanit {
+  font-family: "kanit";
 }
 
 body {
@@ -32,8 +36,8 @@ body {
 }
 
 .navbar #calculator-icon {
-  width: 50%;
-  filter: invert(1);
+  color: white;
+  padding-top: 5px;
 }
 
 #calculator-icon-link {
@@ -45,6 +49,14 @@ body {
 .navbar .divider {
   width: 70%;
   height: 1px;
+}
+
+.divider {
+  width: 95%;
+  height: 2px;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .small-icon-container {
